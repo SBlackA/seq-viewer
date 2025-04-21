@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <title>Sequence Art</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="styles.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body class="fullpage">
+  <div id="sequence-gallery" class="container"></div>
+  <!-- Modal -->
+  <div class="modal fade" id="imageModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <img id="modalMainImage" src="" class="img mb-3" alt="Large view">
+          <div id="modalThumbnails" class="d-flex justify-content-center gap-2 mt-3"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+<script>
+const sequenceData = [
+
+// **** SORT1 ****
+  {
+    name: "SORT1",
+    id: "Q99523",
+    type: "protein",
+    images: [
+      {
+        src: "images/SORT1/SORT1_Q99523_1_aa62_thumb.png",
+        label: "1. key aa62",
+        description: "letters show select indices",
+        gallery: [
+          "images/SORT1/SORT1_Q99523_1_aa62_thumb.png",
+          "images/SORT1/SORT1_Q99523_1_aa62_frame.png",
+          "images/SORT1/SORT1_Q99523_1_aa62_crop.jpg"
+        ]
+      },
+      {
+        src: "images/SORT1/SORT1_Q99523_2_aa63_thumb.png",
+        label: "2. key aa63",
+	      description: "included index number",
+        gallery: [
+          "images/SORT1/SORT1_Q99523_2_aa63_thumb.png",
+          "images/SORT1/SORT1_Q99523_2_aa63_frame.png",
+          "images/SORT1/SORT1_Q99523_2_aa63_crop.jpg",
+			  "images/SORT1/SORT1_Q99523_2_aa63_crop_2.jpg",
+        ]
+      },
+      {
+        src: "images/SORT1/SORT1_Q99523_3_aa64_thumb.png",
+        label: "3. key aa64",
+	      description: "title bold & spaced",
+        gallery: [
+          "images/SORT1/SORT1_Q99523_3_aa64_thumb.png",
+          "images/SORT1/SORT1_Q99523_3_aa64_frame.png",
+          "images/SORT1/SORT1_Q99523_3_aa64_crop.jpg",
+          "images/SORT1/SORT1_Q99523_3_aa64_crop_2.jpg"
+        ]
+      },
+      {
+        src: "images/SORT1/SORT1_Q99523_5_aa7_thumb.png",
+        label: "4. key aa7",
+	      description: "title bold & spaced",
+        gallery: [
+          "images/SORT1/SORT1_Q99523_5_aa7_thumb.png",
+          "images/SORT1/SORT1_Q99523_5_aa7_frame.png",
+          "images/SORT1/SORT1_Q99523_5_aa7_crop.jpg"
+        ]
+      }
+    ]
+  },
+
+// **** GPR22 ****
+  {
+    name: "GPR22",
+    id: "Q99680",
+    type: "protein",
+    images: [
+      {
+        src: "images/GPR22/GPR22_Q99680_dots_thumb.png",
+        label: "1. Watercolor texture",
+	      description: "title italicized",
+        gallery: [
+          "images/GPR22/GPR22_Q99680_dots_thumb.png",
+          "images/GPR22/GPR22_Q99680_dots_print.png",
+          "images/GPR22/GPR22_Q99680_dots_1_frame.png",
+			  "images/GPR22/GPR22_Q99680_dots_crop.jpg"
+        ]
+      },
+      {
+        src: "images/GPR22/GPR22_Q99680_aa13_thumb.png",
+        label: "2. key aa13",
+        description: "title spaced",
+        gallery: [
+          "images/GPR22/GPR22_Q99680_aa13_thumb.png",
+          "images/GPR22/GPR22_Q99680_aa13_print.png",
+          "images/GPR22/GPR22_Q99680_aa13_1_framed.png"
+        ]
+      },
+      {
+        src: "images/GPR22/GPR22_Q99680_aa62_thumb.png",
+        label: "3. key aa62",
+        description: "",
+        gallery: [
+          "images/GPR22/GPR22_Q99680_aa62_thumb.png",
+          "images/GPR22/GPR22_Q99680_aa62_print.png",
+          "images/GPR22/GPR22_Q99680_aa62_1_frame.png"
+        ]
+      },
+      {
+        src: "images/GPR22/GPR22_4_aa7_thumb.png",
+        label: "4. key aa7",
+        description: "title spaced",
+        gallery: [
+          "images/GPR22/GPR22_4_aa7_thumb.png",
+          "images/GPR22/GPR22_4_aa7_frame.png",
+	"images/GPR22/GPR22_4_aa7_crop.jpg"
+        ]
+      }
+    ]
+  },
+
+// **** NPRC ****
+  {
+    name: "NPRC",
+    id: "X52282.1",
+    type: "DNA",
+    images: [
+      {
+        src: "images/NPRC/NPRC_1_na33_thumb.png",
+        label: "1. key na33",
+        description: "title italicized, each letter faintly shows through",
+        gallery: [
+          "images/NPRC/NPRC_1_na33_thumb.png",
+          "images/NPRC/NPRC_1_na33_frame.png",
+          "images/NPRC/NPRC_1_na33_crop.jpg"
+        ]
+      },
+      {
+        src: "images/NPRC/NPRC_2_na89_thumb.png",
+        label: "2. key na89",
+        description: "",
+        gallery: [
+          "images/NPRC/NPRC_2_na89_thumb.png",
+          "images/NPRC/NPRC_2_na89_frame.png",
+          "images/NPRC/NPRC_2_na89_crop.jpg" 
+        ]
+      },
+      {
+        src: "images/NPRC/NPRC_3_na7_thumb.png",
+        label: "3. key na7",
+        	description: "title spaced",
+        gallery: [
+          "images/NPRC/NPRC_3_na7_thumb.png",
+          "images/NPRC/NPRC_3_na7_frame.png",
+          "images/NPRC/NPRC_3_na7_crop.jpg"
+        ]
+      },
+      {
+        src: "images/NPRC/NPRC_4_tile_thumb.png",
+        label: "4. Tiles",
+        	description: "title spaced",
+        gallery: [
+          "images/NPRC/NPRC_4_tile_thumb.png",
+          "images/NPRC/NPRC_4_tile_frame.png",
+          "images/NPRC/NPRC_4_tile_crop.jpg"
+        ]
+      }
+    ]
+  },
+
+// **** PTH1R ****
+  {
+    name: "PTH1R",
+    id: "L04308.1",
+    type: "DNA",
+    images: [
+      {
+        src: "images/PTH1R/PTH1R_1_na33_thumb.png",
+        label: "1. key na33",
+        description: "",
+        gallery: [
+          "images/PTH1R/PTH1R_1_na33_thumb.png",
+          "images/PTH1R/PTH1R_1_na33_frame.png",
+          "images/PTH1R/PTH1R_1_na33_crop.jpg"
+        ]
+      },
+      {
+        src: "images/PTH1R/PTH1R_2_na31_thumb.png",
+        label: "2. key na31",
+        description: "title italicized & spaced",
+        gallery: [
+          "images/PTH1R/PTH1R_2_na31_thumb.png",
+          "images/PTH1R/PTH1R_2_na31_frame.png",
+          "images/PTH1R/PTH1R_2_na31_crop.jpg" 
+        ]
+      },
+      {
+        src: "images/PTH1R/PTH1R_3_na27_thumb.png",
+        label: "3. key na27",
+        	description: "title italicized & spaced",
+        gallery: [
+          "images/PTH1R/PTH1R_3_na27_thumb.png",
+          "images/PTH1R/PTH1R_3_na27_frame.png",
+          "images/PTH1R/PTH1R_3_na27_crop.jpg"
+        ]
+      },
+      {
+        src: "images/PTH1R/PTH1R_4_na111_thumb.png",
+        label: "4. key na111",
+        	description: "",
+        gallery: [
+          "images/PTH1R/PTH1R_4_na111_thumb.png",
+          "images/PTH1R/PTH1R_4_na111_frame.png",
+          "images/PTH1R/PTH1R_4_na111_crop.jpg"
+        ]
+      }
+    ]
+  },
+
+// **** TFR1 ****
+  {
+    name: "TFR1",
+    id: "XR_008486780",
+    type: "DNA",
+    images: [
+      {
+        src: "images/TFR1/TFR1_1_na28_thumb.png",
+        label: "1. key na28",
+        description: "",
+        gallery: [
+          "images/TFR1/TFR1_1_na28_thumb.png",
+          "images/TFR1/TFR1_1_na28_frame.png",
+          "images/TFR1/TFR1_1_na28_crop.jpg"
+        ]
+      },
+      {
+        src: "images/TFR1/TFR1_2_na112_thumb.png",
+        label: "2. key na112",
+        description: "",
+        gallery: [
+          "images/TFR1/TFR1_2_na112_thumb.png",
+          "images/TFR1/TFR1_2_na112_frame.png",
+          "images/TFR1/TFR1_2_na112_crop.jpg" 
+        ]
+      },
+      {
+        src: "images/TFR1/TFR1_3_na113_thumb.png",
+        label: "3. key na113",
+        	description: "title spaced",
+        gallery: [
+          "images/TFR1/TFR1_3_na113_thumb.png",
+          "images/TFR1/TFR1_3_na113_frame.png",
+          "images/TFR1/TFR1_3_na113_crop.jpg"
+        ]
+      },
+    ]
+	}
+];
+
+
+
+
+    const container = document.getElementById("sequence-gallery");
+    const modalMainImage = document.getElementById("modalMainImage");
+    const modalThumbnails = document.getElementById("modalThumbnails");
+   
+    const typeColorMap = {
+    protein: "bg-info",
+    DNA: "bg-warning",
+    rna: "bg-success",
+    unknown: "bg-dark"
+    };
+
+    function openModal(imageGroup) {
+      modalMainImage.src = imageGroup[0];
+      while (modalThumbnails.firstChild) {
+        modalThumbnails.removeChild(modalThumbnails.firstChild);
+      }
+
+      imageGroup.forEach(img => {
+        const thumb = document.createElement("img");
+        thumb.src = img;
+        thumb.className = "thumbnail-img";
+        thumb.onclick = () => {
+          modalMainImage.src = img;
+        };
+        modalThumbnails.appendChild(thumb);
+      });
+
+      const modal = new bootstrap.Modal(document.getElementById("imageModal"));
+      modal.show();
+    }
+
+
+    sequenceData.forEach(sequence => {
+      // Wrapper container for this sequence
+      const sequenceWrapper = document.createElement("div");
+      sequenceWrapper.className = "sequence-container";
+
+      // Row 1: Header 
+      const headerRow = document.createElement("div");
+      headerRow.className = "section-header";
+
+      const headerCol = document.createElement("div");
+      headerCol.className = "col-12";
+
+      const titleHeader = document.createElement("h2");
+      titleHeader.textContent = sequence.name;
+
+      const metaLine = document.createElement("p");
+      const idbadge = document.createElement("span");
+      idbadge.className = `badge ${typeColorMap[sequence.id] || "bg-dark"}`;
+      idbadge.textContent = sequence.id;
+      const badge = document.createElement("span");
+      badge.className = `badge ms-2 ${typeColorMap[sequence.type] || "bg-secondary"}`;
+      badge.textContent = sequence.type;
+
+      metaLine.appendChild(idbadge);
+      metaLine.appendChild(badge);
+      headerCol.appendChild(titleHeader);
+      headerCol.appendChild(metaLine);
+      headerRow.appendChild(headerCol);
+
+      // Row 2: Images
+      const imageRow = document.createElement("div");
+      imageRow.className = "row sequence-row group-box";
+
+      sequence.images.forEach(img => {
+        const col = document.createElement("div");
+        col.className = "col-6 col-md-3 img-box";
+
+        const imageEl = document.createElement("img");
+        imageEl.src = img.src;
+        imageEl.alt = `${sequence.name} artwork`;
+        imageEl.className = "img-fluid gallery-img";
+        imageEl.style.cursor = "pointer";
+        imageEl.onclick = () => openModal(img.gallery);
+
+        const labelDiv = document.createElement("div");
+        labelDiv.className = "mt-2 p-1 img-text-box small";
+        labelDiv.textContent = img.label;
+
+        const descriptionDiv = document.createElement("div");
+        descriptionDiv.className = "img-description";
+        descriptionDiv.textContent = img.description || ""; // optional fallback
+
+        col.appendChild(imageEl);
+        col.appendChild(labelDiv);
+        col.appendChild(descriptionDiv);
+        imageRow.appendChild(col);
+    });
+
+  // Combine and append to container
+  sequenceWrapper.appendChild(headerRow);
+  sequenceWrapper.appendChild(imageRow);
+  container.appendChild(sequenceWrapper);
+});
+   
+      
+</script>
+</body>
+</html>
